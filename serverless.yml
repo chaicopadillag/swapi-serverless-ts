@@ -1,0 +1,92 @@
+service: swapi-serverless-ts
+frameworkVersion: "3"
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:AWS_REGION}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:Scan
+      Resource:
+        - arn:aws:dynamodb:${env:AWS_REGION}:${env:AWS_USER_ID}:table/productsTable
+
+  environment:
+    SWAPI_API: ${env:SWAPI_API}
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: productsTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+functions:
+  createProduct:
+    handler: src/controllers/productController.createProduct
+    events:
+      - httpApi:
+          path: /products
+          method: post
+  getAllProducts:
+    handler: src/controllers/productController.getAllProducts
+    events:
+      - httpApi:
+          path: /products
+          method: get
+  getCharacters:
+    handler: src/controllers/characterController.getCharacters
+    events:
+      - httpApi:
+          path: /characters
+          method: get
+  getPlanets:
+    handler: src/controllers/planetController.getPlanets
+    events:
+      - httpApi:
+          path: /planets
+          method: get
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    watch:
+      pattern: ["src/**/*.ts"]
+      ignore: ["temp/**/*", "test/**/*"]
+  serverless-offline:
+    httpPort: 4000 # Puerto HTTP para el servidor local
+    lambdaPort: 3002 # Puerto para invocar funciones Lambda localmente
+    pattern: "src/**/*.ts"
+    ignore: [.build, "build", "test", "node_modules", ".serverless"]
+
+package:
+  include:
+    - "node_modules/aws-sdk/**"
+    - "node_modules/axios/**"
+    - "node_modules/uuid/**"
+    - "node_modules/buffer/**"
+    - "node_modules/events/**"
+    - "node_modules/ieee754/**"
+    - "node_modules/jmespath/**"
+    - "node_modules/querystring/**"
+    - "node_modules/sax/**"
+    - "node_modules/url/**"
+    - "node_modules/util/**"
+    - "node_modules/xml2js/**"
+    - "node_modules/xmlbuilder/**"

@@ -1,0 +1,16 @@
+export const mapPlanet = {
+  name: 'nombre',
+  rotation_period: 'periodo_de_rotación',
+  orbital_period: 'periodo_orbital',
+  diameter: 'diámetro',
+  climate: 'clima',
+  gravity: 'gravedad',
+  terrain: 'terreno',
+  surface_water: 'agua_superficial',
+  population: 'población',
+  residents: 'residentes',
+  films: 'películas',
+  created: 'creado',
+  edited: 'editado',
+  url: 'url',
+};

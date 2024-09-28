@@ -1,0 +1,31 @@
+{
+    "collectCoverageFrom": [
+        "**/*.(t|j)s"
+    ],
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts"
+    ],
+    "rootDir": "./test",
+    "testRegex": ".spec.ts",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coveragePathIgnorePatterns": [
+        "src/config/*",
+        "src/types/*",
+        "src/models/*",
+        "src/mappers/map/*"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+        "clover",
+        "json",
+        "lcov",
+        "text",
+        "text-summary"
+    ],
+    "testTimeout": 60000,
+    "coverageDirectory": "../coverage"
+}

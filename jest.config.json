@@ -1,14 +1,17 @@
 {
+    "collectCoverage": true,
     "collectCoverageFrom": [
-        "**/*.(t|j)s"
+        "src/**/*.(t|j)s"
     ],
     "moduleFileExtensions": [
         "js",
         "json",
         "ts"
     ],
-    "rootDir": "./test",
-    "testRegex": ".spec.ts",
+    "rootDir": "./",
+    "testMatch": [
+        "**/test/**/*.(spec|test).(t|j)s"
+    ],
     "transform": {
         "^.+\\.(t|j)s$": "ts-jest"
     },
@@ -16,9 +19,9 @@
         "src/config/*",
         "src/types/*",
         "src/models/*",
-        "src/mappers/map/*"
+        "src/mappers/map/*",
+        "src/shared/utils/http-errors.ts"
     ],
-    "collectCoverage": true,
     "coverageReporters": [
         "clover",
         "json",

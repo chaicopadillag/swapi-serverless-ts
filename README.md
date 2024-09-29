@@ -122,8 +122,6 @@ Pruebas
 Para ejecutar las pruebas unitarias del proyecto:
 
 ```
-
-npm run test
-npm run cov
+npm run test:cov
 
 ```

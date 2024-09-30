@@ -17,8 +17,8 @@ Este proyecto implementa una API Serverless en AWS para gestionar productos, per
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tuusuario/tu-proyecto.git
-   cd tu-proyecto
+   git clone https://github.com/chaicopadillag/swapi-serverless-ts
+   swapi-serverless-ts
 
    ```
 
@@ -59,7 +59,7 @@ serverless deploy --stage dev
 
 ```
 
-  curl https://{API_URL}/characters
+  curl https://mcdzwthly0.execute-api.us-east-1.amazonaws.com/characters
 
 ```
 
@@ -72,7 +72,7 @@ serverless deploy --stage dev
 
 ```
 
-  curl https://{API_URL}/planets
+  curl https://mcdzwthly0.execute-api.us-east-1.amazonaws.com/planets
 
 ```
 
@@ -85,7 +85,7 @@ serverless deploy --stage dev
 
 ```
 
-  curl --location --request GET '{API_URL}/planets' \
+  curl --location 'https://mcdzwthly0.execute-api.us-east-1.amazonaws.com/products' \
 --header 'Content-Type: application/json' \
 --data '{
     "price": 10,
@@ -104,7 +104,7 @@ serverless deploy --stage dev
   Ejemplo de petición:
 
 ```
-  curl https://{API_URL}/products
+  curl --location 'https://mcdzwthly0.execute-api.us-east-1.amazonaws.com/products'
 
 ```
 
